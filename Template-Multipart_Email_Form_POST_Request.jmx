@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="2.6" jmeter="2.11 r1554548">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Multipart Email Form POST Request" enabled="true">
+      <stringProp name="TestPlan.comments">Send a multipart POST Request that contains an email form.</stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Multipart POST Request" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1398147420000</longProp>
+        <longProp name="ThreadGroup.end_time">1398147420000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration">120</stringProp>
+        <stringProp name="ThreadGroup.delay">0</stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Content-Type</stringProp>
+              <stringProp name="Header.value">multipart/form-data; boundary=----postboundary</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Multipart Email Form" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">------postboundary&#xd;
+Content-Disposition: form-data; name=&quot;to&quot;&#xd;
+&#xd;
+${RECIPIENT_EMAIL}&#xd;
+------postboundary&#xd;
+Content-Disposition: form-data; name=&quot;disposable&quot;&#xd;
+&#xd;
+&#xd;
+------postboundary&#xd;
+Content-Disposition: form-data; name=&quot;from&quot;&#xd;
+&#xd;
+${SENDER_EMAIL}&#xd;
+------postboundary&#xd;
+Content-Disposition: form-data; name=&quot;subject&quot;&#xd;
+&#xd;
+${SUBJECT}&#xd;
+------postboundary&#xd;
+Content-Disposition: form-data; name=&quot;message&quot;&#xd;
+&#xd;
+Return-Path: &lt;${SENDER_EMAIL}&gt;&#xd;
+Received: from [127.0.0.1] ([127.0.0.1:44645] helo=alpnms02) by vtcceg-momta01 (envelope-from &lt;${SENDER_EMAIL}&gt;) (ecelerity 3.0.23.37692 r(37717)) with ESMTP id 2B/F7-26738-75404815; Fri, 03 May 2013 14:39:19 -0400&#xd;
+Date: Fri, 03 May 2013 14:39:19 -0400&#xd;
+From: ${SENDER_EMAIL}&#xd;
+To: ${RECIPIENT_EMAIL}&#xd;
+Message-ID: &lt;387849946.746353221367606359512.JavaMail.nems@alpnms02&gt;&#xd;
+Subject: ${SUBJECT}&#xd;
+Mime-Version: 1.0&#xd;
+Content-Type: multipart/mixed;&#xd;
+ boundary=&quot;----=_Part_51802986_2115180112.1367606359512&quot;;&#xd;
+ charset=UTF-8&#xd;
+ Content-Transfer-Encoding: 7bit&#xd;
+ X-Mms-Message-Type: m-send-req&#xd;
+ X-Mms-Transaction-Id: abcdefg&#xd;
+ X-Mms-MMS-Version: 1.0&#xd;
+ X-Mms-Message-Class: Personal&#xd;
+ X-Mms-Priority: Normal&#xd;
+ X-Mms-Delivery-Report: No&#xd;
+ X-Mms-Read-Reply: No&#xd;
+ X-Mms-Sender-Visibility: Show&#xd;
+ &#xd;
+ &#xd;
+ ------=_Part_51802986_2115180112.1367606359512&#xd;
+ Content-Type: text/plain;&#xd;
+ charset=UTF-8&#xd;
+ Content-Transfer-Encoding: 7bit&#xd;
+&#xd;
+&#xd;
+ ------=_Part_51802986_2115180112.1367606359512--&#xd;
+&#xd;
+------postboundary&#xd;
+Content-Disposition: form-data; name=&quot;plain&quot;&#xd;
+&#xd;
+&#xd;
+------postboundary&#xd;
+Content-Disposition: form-data; name=&quot;html&quot;&#xd;
+&#xd;
+&#xd;
+------postboundary&#xd;
+Content-Disposition: form-data; name=&quot;reply_plain&quot;&#xd;
+&#xd;
+&#xd;
+------postboundary&#xd;
+Content-Disposition: form-data; name=&quot;mid&quot;&#xd;
+&#xd;
+387849946.746353221367606359512.JavaMail.nems@alpnms02&#xd;
+------postboundary&#xd;
+Content-Disposition: form-data; name=&quot;x_to_header&quot;&#xd;
+&#xd;
+[&quot;${RECIPIENT_EMAIL}&quot;]&#xd;
+------postboundary&#xd;
+Content-Disposition: form-data; name=&quot;x_from_header&quot;&#xd;
+&#xd;
+[&quot;${SENDER_EMAIL}&quot;]&#xd;
+------postboundary&#xd;
+Content-Disposition: form-data; name=&quot;x_cc_header&quot;&#xd;
+&#xd;
+&#xd;
+------postboundary&#xd;
+Content-Disposition: form-data; name=&quot;return_path&quot;&#xd;
+&#xd;
+${SENDER_EMAIL}&#xd;
+------postboundary&#xd;
+Content-Disposition: form-data; name=&quot;recipients&quot;&#xd;
+&#xd;
+[&quot;${RECIPIENT_EMAIL}&quot;]&#xd;
+------postboundary&#xd;
+Content-Disposition: form-data; name=&quot;attachments[0][file_name]&quot;&#xd;
+&#xd;
+${FILE_NAME}&#xd;
+------postboundary&#xd;
+Content-Disposition: form-data; name=&quot;attachments[0][content_type]&quot;&#xd;
+&#xd;
+image/jpeg&#xd;
+------postboundary&#xd;
+Content-Disposition: form-data; name=&quot;attachments[0][size]&quot;&#xd;
+&#xd;
+23749&#xd;
+------postboundary&#xd;
+Content-Disposition: form-data; name=&quot;attachments[0][disposition]&quot;&#xd;
+&#xd;
+attachment&#xd;
+------postboundary&#xd;
+Content-Disposition: form-data; name=&quot;attachments[0][url]&quot;&#xd;
+&#xd;
+${FILE_URL}&#xd;
+------postboundary&#xd;
+Content-Disposition: form-data; name=&quot;signature&quot;&#xd;
+&#xd;
+3e1b3bae57da1211f97741866ff68948&#xd;
+------postboundary--</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="TestPlan.comments">POST a multipart Email form</stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
